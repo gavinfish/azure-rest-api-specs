@@ -3462,6 +3462,14 @@
           "description": "Indicate if end to end TLS is enabled.",
           "type": "boolean",
           "default": false
+        },
+        "loadedCertificates": {
+          "description": "Collection of loaded certificates",
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LoadedCertificate"
+          }
         }
       }
     },
@@ -3505,6 +3513,21 @@
         "mountPath": {
           "description": "Mount path of the persistent disk",
           "type": "string"
+        }
+      }
+    },
+    "LoadedCertificate": {
+      "description": "Loaded certificate payload",
+      "type": "object",
+      "properties": {
+        "resourceId": {
+          "description": "Resource Id of loaded certificate",
+          "type": "string"
+        },
+        "loadTrustStore": {
+          "description": "Indicate whether the certificate will be loaded into default trust store, only work for Java runtime.",
+          "type": "boolean",
+          "default": false
         }
       }
     },
@@ -3638,10 +3661,6 @@
     },
     "CertificateProperties": {
       "description": "Certificate resource payload.",
-      "required": [
-        "vaultUri",
-        "keyVaultCertName"
-      ],
       "type": "object",
       "properties": {
         "thumbprint": {
@@ -3660,6 +3679,11 @@
         "certVersion": {
           "description": "The certificate version of key vault.",
           "type": "string"
+        },
+        "importPrivateKey": {
+          "description": "Indicates whether will import private key from key vault.",
+          "type": "boolean",
+          "default": true
         },
         "issuer": {
           "description": "The issuer of certificate.",
@@ -3694,6 +3718,10 @@
             "type": "string"
           },
           "readOnly": true
+        },
+        "content": {
+          "description": "The content of uploaded certificate.",
+          "type": "string"
         }
       }
     },
