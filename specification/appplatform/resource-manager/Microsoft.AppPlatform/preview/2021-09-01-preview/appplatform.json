@@ -4031,6 +4031,10 @@
         "mountPath": {
           "description": "The mount path of the persistent volume.",
           "type": "string"
+        },
+        "mountOptions": {
+          "description": "These are the mount options for a persistent volume",
+          "type": "string"
         }
       },
       "discriminator": "type"
