@@ -3927,24 +3927,41 @@
         }
       }
     },
+    "StorageResource": {
+      "description": "Storage resource payload.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ProxyResource"
+        }
+      ],
+      "properties": {
+        "properties": {
+          "$ref": "#/definitions/StorageProperties",
+          "description": "Properties of the storage resource payload.",
+          "x-ms-client-flatten": false
+        }
+      }
+    },
     "StorageProperties": {
       "description": "Storage resource payload.",
-      "required": [
-        "storageType"
-      ],
       "type": "object",
       "properties": {
         "storageType": {
           "description": "The type of the storage.",
-          "type": "string",
-          "readOnly": true
-        },
-        "discriminator": "storageType"
-      }
+          "type": "string"
+        }
+      },
+      "discriminator": "storageType"
     },
     "StorageAccount": {
       "description": "storage resource of type Azure Storage Account.",
       "type": "object",
+      "required": [
+        "storageType",
+        "accountName",
+        "accountKey"
+      ],
       "allOf": [
         {
           "$ref": "#/definitions/StorageProperties"
@@ -3980,26 +3997,41 @@
         }
       }
     },
-    "PersistentVolume": {
+    "PersistentVolumeResource": {
       "description": "Persistent volume resource payload.",
+      "type": "object",
       "required": [
-        "type"
+        "storageId"
       ],
+      "allOf": [
+        {
+          "$ref": "#/definitions/ProxyResource"
+        }
+      ],
+      "properties": {
+        "properties": {
+          "$ref": "#/definitions/PersistentVolumeProperties",
+          "description": "Properties of the persistent volume resource payload.",
+          "x-ms-client-flatten": false
+        },
+        "storageId": {
+            "description": "The resource id of storage resource.",
+            "type": "string"
+        }
+      }
+    },
+    "PersistentVolumeProperties": {
+      "description": "Persistent volume resource payload.",
       "type": "object",
       "properties": {
         "type": {
           "description": "The type of the underlying resource to mount as a persistent volume.",
-          "type": "string",
-          "readOnly": true
+          "type": "string"
         },
         "mountPath": {
           "description": "The mount path of the persistent volume.",
           "type": "string"
         }
-      },
-      "storageId": {
-          "description": "The resource id of storage resource.",
-          "type": "string"
       },
       "discriminator": "type"
     },
@@ -4012,7 +4044,7 @@
           "uniqueItems": false,
           "type": "array",
           "items": {
-            "$ref": "#/definitions/PersistentVolume"
+            "$ref": "#/definitions/PersistentVolumeResource"
           }
         },
         "nextLink": {
@@ -4024,9 +4056,14 @@
     "AzureFile": {
       "description": "storage resource of type Azure Storage Account.",
       "type": "object",
+      "required": [
+        "type",
+        "mountPath",
+        "shareName"
+      ],
       "allOf": [
         {
-          "$ref": "#/definitions/PersistentVolume"
+          "$ref": "#/definitions/PersistentVolumeProperties"
         }
       ],
       "properties": {
@@ -5048,6 +5085,15 @@
       "name": "certificateName",
       "in": "path",
       "description": "The name of the certificate resource.",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method"
+    }
+    ,
+    "StorageNameParameter": {
+      "name": "storageName",
+      "in": "path",
+      "description": "The name of the storage resource.",
       "required": true,
       "type": "string",
       "x-ms-parameter-location": "method"
