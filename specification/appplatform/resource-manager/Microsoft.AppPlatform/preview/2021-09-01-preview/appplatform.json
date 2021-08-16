@@ -3706,13 +3706,13 @@
             "type": "string"
           },
           "readOnly": true
-        },
-        "discriminator": "type"
-      }
+        }
+      },
+      "discriminator": "type"
     },
     "KeyVaultCertificateProperties": {
       "description": "Properties of certficate imported from key vault.",
-      "requried": [
+      "required": [
         "type",
         "vaultUri",
         "keyVaultCertName"
@@ -3742,11 +3742,11 @@
           "default": true
         }
       },
-      "x-ms-discriminator-value": "KeyVaultCertificate"
+      "x-ms-discriminator-value": "KeyVaultCertificateProperties"
     },
     "ContentCertificateProperties": {
       "description": "Properties of certficate imported from key vault.",
-      "requried": [
+      "required": [
         "type",
         "content"
       ],
@@ -3762,7 +3762,7 @@
           "type": "string"
         }
       },
-      "x-ms-discriminator-value": "ContentCertificate"
+      "x-ms-discriminator-value": "ContentCertificateProperties"
     },
     "CertificateResourceCollection": {
       "description": "Collection compose of certificate resources list and a possible link for next page.",
