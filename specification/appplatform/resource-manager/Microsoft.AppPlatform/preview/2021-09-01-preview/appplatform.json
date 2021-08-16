@@ -4033,7 +4033,7 @@
           "type": "string"
         },
         "mountOptions": {
-          "description": "These are the mount options for a persistent volume",
+          "description": "These are the mount options for a persistent volume.",
           "type": "string"
         }
       },
