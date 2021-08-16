@@ -1391,6 +1391,214 @@
         }
       }
     },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/storages/{storageName}": {
+      "get": {
+        "tags": [
+          "AppPlatform"
+        ],
+        "description": "Get the storage resource.",
+        "operationId": "Storages_Get",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "$ref": "#/parameters/ServiceNameParameter"
+          },
+          {
+            "$ref": "#/parameters/StorageNameParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. The response describe the storage.",
+            "schema": {
+              "$ref": "#/definitions/StorageResource"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/CloudError"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "Storages_Get": {
+            "$ref": "./examples/Storages_Get.json"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "AppPlatform"
+        ],
+        "description": "Create or update storage resource.",
+        "operationId": "Storages_CreateOrUpdate",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "$ref": "#/parameters/ServiceNameParameter"
+          },
+          {
+            "$ref": "#/parameters/StorageNameParameter"
+          },
+          {
+            "name": "storageResource",
+            "in": "body",
+            "description": "Parameters for the create or update operation",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StorageResource"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. The response describe the existed storage updated.",
+            "schema": {
+              "$ref": "#/definitions/StorageResource"
+            }
+          },
+          "201": {
+            "description": "Created. The response describes the new storage and contains a Location header to query the\r\noperation result.",
+            "schema": {
+              "$ref": "#/definitions/StorageResource"
+            }
+          },
+          "202": {
+            "description": "Accepted. The response indicates the exiting storage is now updating and contains a Location\r\nheader to query the operation result.",
+            "schema": {
+              "$ref": "#/definitions/StorageResource"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/CloudError"
+            }
+          }
+        },
+        "x-ms-long-running-operation": true,
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "azure-async-operation"
+        },
+        "x-ms-examples": {
+          "Storages_CreateOrUpdate": {
+            "$ref": "./examples/Storages_CreateOrUpdate.json"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "AppPlatform"
+        ],
+        "description": "Delete the storage resource.",
+        "operationId": "Storages_Delete",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "$ref": "#/parameters/ServiceNameParameter"
+          },
+          {
+            "$ref": "#/parameters/StorageNameParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. The response indicates the storage deleted."
+          },
+          "202": {
+            "description": "Accepted. The response indicates the delete operation is performed in the background."
+          },
+          "204": {
+            "description": "No content. The response indicates the storage doesn't exist."
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/CloudError"
+            }
+          }
+        },
+        "x-ms-long-running-operation": true,
+        "x-ms-long-running-operation-options": {
+          "final-state-via": "azure-async-operation"
+        },
+        "x-ms-examples": {
+          "Storages_Delete": {
+            "$ref": "./examples/Storages_Delete.json"
+          }
+        }
+      }
+    },
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/storages": {
+      "get": {
+        "tags": [
+          "AppPlatform"
+        ],
+        "description": "List all the storages of one Azure Spring Cloud instance.",
+        "operationId": "Storages_List",
+        "parameters": [
+          {
+            "$ref": "#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "$ref": "#/parameters/ServiceNameParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success. The response describe all the storages attached to one Azure Spring Cloud instance.",
+            "schema": {
+              "$ref": "#/definitions/StorageResourceCollection"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "#/definitions/CloudError"
+            }
+          }
+        },
+        "x-ms-pageable": {
+          "nextLinkName": "nextLink"
+        },
+        "x-ms-examples": {
+          "Storages_List": {
+            "$ref": "./examples/Storages_List.json"
+          }
+        }
+      }
+    },
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppPlatform/Spring/{serviceName}/certificates/{certificateName}": {
       "get": {
         "tags": [
@@ -3458,6 +3666,10 @@
           "$ref": "#/definitions/PersistentDisk",
           "description": "Persistent disk settings"
         },
+        "customPersistentVolumes": {
+          "$ref": "#/definitions/PersistentVolumeCollection",
+          "description": "List of persistent volumes"
+        },
         "enableEndToEndTLS": {
           "description": "Indicate if end to end TLS is enabled.",
           "type": "boolean",
@@ -3714,6 +3926,116 @@
           "type": "string"
         }
       }
+    },
+    "StorageProperties": {
+      "description": "Storage resource payload.",
+      "required": [
+        "storageType"
+      ],
+      "type": "object",
+      "properties": {
+        "storageType": {
+          "description": "The type of the storage.",
+          "type": "string",
+          "readOnly": true
+        },
+        "discriminator": "storageType"
+      }
+    },
+    "StorageAccount": {
+      "description": "storage resource of type Azure Storage Account.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/StorageProperties"
+        }
+      ],
+      "properties": {
+        "accountName": {
+          "description": "The account name of the Azure Storage Account.",
+          "type": "string",
+        },
+        "accountKey": {
+          "description": "The account key of the Azure Storage Account.",
+          "type": "string",
+        }
+      },
+      "x-ms-discriminator-value": "StorageAccount"
+    },
+    "StorageResourceCollection": {
+      "description": "Collection compose of storage resources list and a possible link for next page.",
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "The storage resources list.",
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StorageResource"
+          }
+        },
+        "nextLink": {
+          "description": "The link to next page of storage list.",
+          "type": "string"
+        }
+      }
+    },
+    "PersistentVolume": {
+      "description": "Persistent volume resource payload.",
+      "required": [
+        "type"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "The type of the underlying resource to mount as a persistent volume.",
+          "type": "string",
+          "readOnly": true
+        },
+        "mountPath": {
+          "description": "The mount path of the persistent volume.",
+          "type": "string"
+        }
+      },
+      "storageId": {
+          "description": "The resource id of storage resource.",
+          "type": "string"
+      },
+      "discriminator": "type"
+    },
+    "PersistentVolumeCollection": {
+      "description": "Collection of persistent volume resources list and a possible link for next page.",
+      "type": "object",
+      "properties": {
+        "value": {
+          "description": "The persistent volume resources list.",
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PersistentVolume"
+          }
+        },
+        "nextLink": {
+          "description": "The link to next page of storage list.",
+          "type": "string"
+        }
+      }
+    },
+    "AzureFile": {
+      "description": "storage resource of type Azure Storage Account.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/PersistentVolume"
+        }
+      ],
+      "properties": {
+        "shareName": {
+          "description": "The share name of the Azure File share.",
+          "type": "string",
+        }
+      },
+      "x-ms-discriminator-value": "AzureFile"
     },
     "NameAvailabilityParameters": {
       "description": "Name availability parameters payload",
