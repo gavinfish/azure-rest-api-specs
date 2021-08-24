@@ -3666,9 +3666,9 @@
           "$ref": "#/definitions/PersistentDisk",
           "description": "Persistent disk settings"
         },
-        "customPersistentVolumes": {
-          "$ref": "#/definitions/PersistentVolumeCollection",
-          "description": "List of persistent volumes"
+        "customPersistentDisks": {
+          "$ref": "#/definitions/CustomPersistentDiskCollection",
+          "description": "List of custom persistent disks"
         },
         "enableEndToEndTLS": {
           "description": "Indicate if end to end TLS is enabled.",
@@ -3970,11 +3970,11 @@
       "properties": {
         "accountName": {
           "description": "The account name of the Azure Storage Account.",
-          "type": "string",
+          "type": "string"
         },
         "accountKey": {
           "description": "The account key of the Azure Storage Account.",
-          "type": "string",
+          "type": "string"
         }
       },
       "x-ms-discriminator-value": "StorageAccount"
@@ -3997,8 +3997,8 @@
         }
       }
     },
-    "PersistentVolumeResource": {
-      "description": "Persistent volume resource payload.",
+    "CustomPersistentDiskResource": {
+      "description": "Custom persistent disk resource payload.",
       "type": "object",
       "required": [
         "storageId"
@@ -4010,30 +4010,30 @@
       ],
       "properties": {
         "properties": {
-          "$ref": "#/definitions/PersistentVolumeProperties",
-          "description": "Properties of the persistent volume resource payload.",
+          "$ref": "#/definitions/CustomPersistentVolumeProperties",
+          "description": "Properties of the custom persistent disk resource payload.",
           "x-ms-client-flatten": false
         },
         "storageId": {
-            "description": "The resource id of storage resource.",
+            "description": "The resource id of Azure Spring Cloud Storage resource.",
             "type": "string"
         }
       }
     },
-    "PersistentVolumeProperties": {
-      "description": "Persistent volume resource payload.",
+    "CustomPersistentVolumeProperties": {
+      "description": "Custom persistent disk resource payload.",
       "type": "object",
       "properties": {
         "type": {
-          "description": "The type of the underlying resource to mount as a persistent volume.",
+          "description": "The type of the underlying resource to mount as a persistent disk.",
           "type": "string"
         },
         "mountPath": {
-          "description": "The mount path of the persistent volume.",
+          "description": "The mount path of the persistent disk.",
           "type": "string"
         },
         "mountOptions": {
-          "description": "These are the mount options for a persistent volume.",
+          "description": "These are the mount options for a persistent disk.",
           "uniqueItems": false,
           "type": "array",
           "items": {
@@ -4043,16 +4043,16 @@
       },
       "discriminator": "type"
     },
-    "PersistentVolumeCollection": {
-      "description": "Collection of persistent volume resources list and a possible link for next page.",
+    "CustomPersistentDiskCollection": {
+      "description": "Collection of persistent disk resources list and a possible link for next page.",
       "type": "object",
       "properties": {
         "value": {
-          "description": "The persistent volume resources list.",
+          "description": "The persistent disk resources list.",
           "uniqueItems": false,
           "type": "array",
           "items": {
-            "$ref": "#/definitions/PersistentVolumeResource"
+            "$ref": "#/definitions/CustomPersistentDiskResource"
           }
         },
         "nextLink": {
@@ -4061,8 +4061,8 @@
         }
       }
     },
-    "AzureFile": {
-      "description": "storage resource of type Azure Storage Account.",
+    "AzureFileVolume": {
+      "description": "The properties of the Azure File volume. Azure File shares are mounted as volumes.",
       "type": "object",
       "required": [
         "type",
@@ -4071,16 +4071,16 @@
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/PersistentVolumeProperties"
+          "$ref": "#/definitions/CustomPersistentVolumeProperties"
         }
       ],
       "properties": {
         "shareName": {
           "description": "The share name of the Azure File share.",
-          "type": "string",
+          "type": "string"
         }
       },
-      "x-ms-discriminator-value": "AzureFile"
+      "x-ms-discriminator-value": "AzureFileVolume"
     },
     "NameAvailabilityParameters": {
       "description": "Name availability parameters payload",
@@ -5096,8 +5096,7 @@
       "required": true,
       "type": "string",
       "x-ms-parameter-location": "method"
-    }
-    ,
+    },
     "StorageNameParameter": {
       "name": "storageName",
       "in": "path",
