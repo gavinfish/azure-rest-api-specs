@@ -4003,11 +4003,6 @@
       "required": [
         "storageId"
       ],
-      "allOf": [
-        {
-          "$ref": "#/definitions/ProxyResource"
-        }
-      ],
       "properties": {
         "properties": {
           "$ref": "#/definitions/CustomPersistentDiskProperties",
