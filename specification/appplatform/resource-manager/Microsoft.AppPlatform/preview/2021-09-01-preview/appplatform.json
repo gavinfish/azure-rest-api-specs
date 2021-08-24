@@ -4010,7 +4010,7 @@
       ],
       "properties": {
         "properties": {
-          "$ref": "#/definitions/CustomPersistentVolumeProperties",
+          "$ref": "#/definitions/CustomPersistentDiskProperties",
           "description": "Properties of the custom persistent disk resource payload.",
           "x-ms-client-flatten": false
         },
@@ -4020,7 +4020,7 @@
         }
       }
     },
-    "CustomPersistentVolumeProperties": {
+    "CustomPersistentDiskProperties": {
       "description": "Custom persistent disk resource payload.",
       "type": "object",
       "properties": {
@@ -4071,7 +4071,7 @@
       ],
       "allOf": [
         {
-          "$ref": "#/definitions/CustomPersistentVolumeProperties"
+          "$ref": "#/definitions/CustomPersistentDiskProperties"
         }
       ],
       "properties": {
