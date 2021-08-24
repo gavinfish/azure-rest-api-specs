@@ -11,7 +11,7 @@
       "body": {
         "properties": {
           "type": "KeyVaultCertificate",
-          "withoutPrivateKey": false,
+          "excludePrivateKey": false,
           "thumbprint": "934367bf1c97033f877db0f15cb1b586957d3133",
           "vaultUri": "https://myvault.vault.azure.net",
           "keyVaultCertName": "mycert",

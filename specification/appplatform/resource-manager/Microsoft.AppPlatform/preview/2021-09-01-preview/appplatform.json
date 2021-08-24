@@ -3739,7 +3739,7 @@
           "description": "The certificate version of key vault.",
           "type": "string"
         },
-        "withoutPrivateKey":{
+        "excludePrivateKey":{
           "description": "Optional. If set to true, it will not import private key from key vault.",
           "type": "boolean",
           "default": false
