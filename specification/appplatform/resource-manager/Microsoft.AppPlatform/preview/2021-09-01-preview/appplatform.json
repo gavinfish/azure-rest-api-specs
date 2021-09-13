@@ -3946,6 +3946,9 @@
     "StorageProperties": {
       "description": "Storage resource payload.",
       "type": "object",
+      "required": [
+        "storageType",
+      ],
       "properties": {
         "storageType": {
           "description": "The type of the storage.",
@@ -4017,6 +4020,10 @@
     },
     "CustomPersistentDiskProperties": {
       "description": "Custom persistent disk resource payload.",
+      "required": [
+        "type",
+        "mountPath",
+      ],
       "type": "object",
       "properties": {
         "type": {
