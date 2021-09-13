@@ -4027,6 +4027,10 @@
           "description": "The mount path of the persistent disk.",
           "type": "string"
         },
+        "readonly": {
+          "description": "Indicates whether the persistent disk is a readonly one.",
+          "type": "boolean"
+        },
         "mountOptions": {
           "description": "These are the mount options for a persistent disk.",
           "uniqueItems": false,
@@ -4040,20 +4044,9 @@
     },
     "CustomPersistentDiskCollection": {
       "description": "Collection of persistent disk resources list and a possible link for next page.",
-      "type": "object",
-      "properties": {
-        "value": {
-          "description": "The persistent disk resources list.",
-          "uniqueItems": false,
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/CustomPersistentDiskResource"
-          }
-        },
-        "nextLink": {
-          "description": "The link to next page of storage list.",
-          "type": "string"
-        }
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/CustomPersistentDiskResource"
       }
     },
     "AzureFileVolume": {
