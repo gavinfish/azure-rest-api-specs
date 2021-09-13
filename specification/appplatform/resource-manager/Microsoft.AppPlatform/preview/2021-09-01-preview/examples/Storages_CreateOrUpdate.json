@@ -29,7 +29,7 @@
     "201": {
       "body": {
         "properties": {
-         "storageType": "StorageAccount",
+          "storageType": "StorageAccount",
           "accountName": "storage-account-name",
           "accountKey": "part-of-account-key*******"
         },

@@ -4010,8 +4010,8 @@
           "x-ms-client-flatten": false
         },
         "storageId": {
-            "description": "The resource id of Azure Spring Cloud Storage resource.",
-            "type": "string"
+          "description": "The resource id of Azure Spring Cloud Storage resource.",
+          "type": "string"
         }
       }
     },

@@ -21,9 +21,9 @@
               "type": "AzureFileVolume",
               "mountPath": "/mypath1/mypath2",
               "mountOptions": [],
-              "shareName": "myFileShare"   
+              "shareName": "myFileShare"
             },
-          "storageId": "myASCStorageID"
+            "storageId": "myASCStorageID"
           }
         ]
       },
@@ -66,9 +66,9 @@
                 "type": "AzureFileVolume",
                 "mountPath": "/mypath1/mypath2",
                 "mountOptions": [],
-                "shareName": "myFileShare"   
+                "shareName": "myFileShare"
               },
-            "storageId": "myASCStorageID"
+              "storageId": "myASCStorageID"
             }
           ]
         },
@@ -108,9 +108,9 @@
                 "type": "AzureFileVolume",
                 "mountPath": "/mypath1/mypath2",
                 "mountOptions": [],
-                "shareName": "myFileShare"   
+                "shareName": "myFileShare"
               },
-            "storageId": "myASCStorageID"
+              "storageId": "myASCStorageID"
             }
           ]
         },

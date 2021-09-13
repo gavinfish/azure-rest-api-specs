@@ -32,14 +32,14 @@
                 "type": "AzureFileVolume",
                 "mountPath": "/mypath1/mypath2",
                 "mountOptions": [
-                    "uid=0",
-                    "gid=0",
-                    "dir_mode=0777", 
-                    "file_mode=0777"
+                  "uid=0",
+                  "gid=0",
+                  "dir_mode=0777",
+                  "file_mode=0777"
                 ],
-                "shareName": "myFileShare"   
+                "shareName": "myFileShare"
               },
-            "storageId": "myASCStorageID"
+              "storageId": "myASCStorageID"
             }
           ]
         },
