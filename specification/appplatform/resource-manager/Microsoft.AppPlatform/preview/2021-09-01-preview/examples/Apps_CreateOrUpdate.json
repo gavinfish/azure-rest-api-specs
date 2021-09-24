@@ -24,6 +24,22 @@
             "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.AppPlatform/Spring/myservice/certificates/mycert2",
             "loadTrustStore": true
           }
+        ],
+        "customPersistentDisks": [
+          {
+            "properties": {
+              "type": "AzureFileVolume",
+              "mountPath": "/mypath1/mypath2",
+              "mountOptions": [
+                "uid=0",
+                "gid=0",
+                "dir_mode=0777",
+                "file_mode=0777"
+              ],
+              "shareName": "myFileShare"
+            },
+            "storageId": "myASCStorageID"
+          }
         ]
       },
       "identity": null,
@@ -54,7 +70,23 @@
             "sizeInGB": 2,
             "usedInGB": 1,
             "mountPath": "mypersistentdisk"
-          }
+          },
+          "customPersistentDisks": [
+            {
+              "properties": {
+                "type": "AzureFileVolume",
+                "mountPath": "/mypath1/mypath2",
+                "mountOptions": [
+                  "uid=0",
+                  "gid=0",
+                  "dir_mode=0777",
+                  "file_mode=0777"
+                ],
+                "shareName": "myFileShare"
+              },
+              "storageId": "myASCStorageID"
+            }
+          ]
         },
         "type": "Microsoft.AppPlatform/Spring/apps",
         "identity": {
@@ -85,7 +117,23 @@
             "sizeInGB": 2,
             "usedInGB": 1,
             "mountPath": "mypersistentdisk"
-          }
+          },
+          "customPersistentDisks": [
+            {
+              "properties": {
+                "type": "AzureFileVolume",
+                "mountPath": "/mypath1/mypath2",
+                "mountOptions": [
+                  "uid=0",
+                  "gid=0",
+                  "dir_mode=0777",
+                  "file_mode=0777"
+                ],
+                "shareName": "myFileShare"
+              },
+              "storageId": "myASCStorageID"
+            }
+          ]
         },
         "type": "Microsoft.AppPlatform/Spring/apps",
         "identity": {
@@ -116,7 +164,23 @@
             "sizeInGB": 2,
             "usedInGB": 1,
             "mountPath": "mypersistentdisk"
-          }
+          },
+          "customPersistentDisks": [
+            {
+              "properties": {
+                "type": "AzureFileVolume",
+                "mountPath": "/mypath1/mypath2",
+                "mountOptions": [
+                  "uid=0",
+                  "gid=0",
+                  "dir_mode=0777",
+                  "file_mode=0777"
+                ],
+                "shareName": "myFileShare"
+              },
+              "storageId": "myASCStorageID"
+            }
+          ]
         },
         "type": "Microsoft.AppPlatform/Spring/apps",
         "identity": {
