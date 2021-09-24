@@ -74,4 +74,4 @@ Please also specify `--python-sdks-folder=<path to the root directory of your az
 ``` yaml $(tag) == 'package-2019-05-01-preview' && $(python) && $(track2)
 namespace: azure.mgmt.appplatform.v2019_05_01_preview
 output-folder: $(python-sdks-folder)/appplatform/azure-mgmt-appplatform/azure/mgmt/appplatform/v2019_05_01_preview
-```
+``` 
