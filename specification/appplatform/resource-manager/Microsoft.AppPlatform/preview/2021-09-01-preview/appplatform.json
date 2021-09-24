@@ -1785,7 +1785,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Success. The response describe the custom domain resource list of one application.",
+            "description": "Success. The response describe the list of certificates in the Service.",
             "schema": {
               "$ref": "#/definitions/CertificateResourceCollection"
             }
@@ -3674,6 +3674,14 @@
           "description": "Indicate if end to end TLS is enabled.",
           "type": "boolean",
           "default": false
+        },
+        "loadedCertificates": {
+          "description": "Collection of loaded certificates",
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/LoadedCertificate"
+          }
         }
       }
     },
@@ -3717,6 +3725,21 @@
         "mountPath": {
           "description": "Mount path of the persistent disk",
           "type": "string"
+        }
+      }
+    },
+    "LoadedCertificate": {
+      "description": "Loaded certificate payload",
+      "type": "object",
+      "properties": {
+        "resourceId": {
+          "description": "Resource Id of loaded certificate",
+          "type": "string"
+        },
+        "loadTrustStore": {
+          "description": "Indicate whether the certificate will be loaded into default trust store, only work for Java runtime.",
+          "type": "boolean",
+          "default": false
         }
       }
     },
@@ -3850,28 +3873,20 @@
     },
     "CertificateProperties": {
       "description": "Certificate resource payload.",
-      "required": [
-        "vaultUri",
-        "keyVaultCertName"
-      ],
       "type": "object",
       "properties": {
+        "type": {
+          "description": "The type of the certificate source.",
+          "type": "string",
+          "x-ms-mutability": [
+            "create",
+            "read"
+          ]
+        },
         "thumbprint": {
           "description": "The thumbprint of certificate.",
           "type": "string",
           "readOnly": true
-        },
-        "vaultUri": {
-          "description": "The vault uri of user key vault.",
-          "type": "string"
-        },
-        "keyVaultCertName": {
-          "description": "The certificate name of key vault.",
-          "type": "string"
-        },
-        "certVersion": {
-          "description": "The certificate version of key vault.",
-          "type": "string"
         },
         "issuer": {
           "description": "The issuer of certificate.",
@@ -3907,7 +3922,62 @@
           },
           "readOnly": true
         }
-      }
+      },
+      "discriminator": "type"
+    },
+    "KeyVaultCertificateProperties": {
+      "description": "Properties of certficate imported from key vault.",
+      "required": [
+        "type",
+        "vaultUri",
+        "keyVaultCertName"
+      ],
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CertificateProperties"
+        }
+      ],
+      "properties": {
+        "vaultUri": {
+          "description": "The vault uri of user key vault.",
+          "type": "string"
+        },
+        "keyVaultCertName": {
+          "description": "The certificate name of key vault.",
+          "type": "string"
+        },
+        "certVersion": {
+          "description": "The certificate version of key vault.",
+          "type": "string"
+        },
+        "excludePrivateKey":{
+          "description": "Optional. If set to true, it will not import private key from key vault.",
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "x-ms-discriminator-value": "KeyVaultCertificate"
+    },
+    "ContentCertificateProperties": {
+      "description": "Properties of certficate imported from key vault.",
+      "required": [
+        "type",
+        "content"
+      ],
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/CertificateProperties"
+        }
+      ],
+      "properties": {
+        "content": {
+          "description": "The content of uploaded certificate.",
+          "type": "string"
+        }
+      },
+      "x-ms-discriminator-value": "ContentCertificate"
     },
     "CertificateResourceCollection": {
       "description": "Collection compose of certificate resources list and a possible link for next page.",

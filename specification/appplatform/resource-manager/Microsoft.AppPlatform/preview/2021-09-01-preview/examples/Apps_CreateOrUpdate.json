@@ -15,6 +15,16 @@
           "sizeInGB": 2,
           "mountPath": "mypersistentdisk"
         },
+        "LoadedCertificates": [
+          {
+            "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.AppPlatform/Spring/myservice/certificates/mycert1",
+            "loadTrustStore": false
+          },
+          {
+            "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.AppPlatform/Spring/myservice/certificates/mycert2",
+            "loadTrustStore": true
+          }
+        ],
         "customPersistentDisks": [
           {
             "properties": {
