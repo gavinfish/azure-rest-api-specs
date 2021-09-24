@@ -134,4 +134,4 @@ csharp:
   namespace: Microsoft.Azure.Management.AppPlatform
   output-folder: $(csharp-sdks-folder)/appplatform/Microsoft.Azure.Management.AppPlatform/src/Generated
   clear-output-folder: true
-``` 
+```
